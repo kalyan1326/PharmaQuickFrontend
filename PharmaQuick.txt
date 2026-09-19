@@ -1,0 +1,23 @@
+PharmaQuick
+
+Services ----------->
+1.user service
+2.auth service
+3.product service
+4.cart service
+5.payment service
+6.order service
+
+Tables --------------->
+1. user -> userId, username, password, mailId, mobilenum, location
+2.jwttoken -> tokenId,userId, token, createdAt, ExpiresAt
+3.products -> prodId, prodName, prodCat, price, description, discount, type, etc..
+4.category -> Id, catName
+5.cart -> 
+
+
+-----------> tools <-------------
+imagekit
+render
+vercel
+aiven
