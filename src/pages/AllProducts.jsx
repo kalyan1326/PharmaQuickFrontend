@@ -7,7 +7,8 @@ import {
     searchProducts,
     getProductsByCategory
 } from "../services/productService";
-import "../css/Products.css";
+
+import "../css/AllProducts.css";
 
 function Products() {
 
