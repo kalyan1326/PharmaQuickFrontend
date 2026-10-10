@@ -91,7 +91,11 @@ function Login() {
             <div className="auth-brand">
 
                 <div className="brand-icon">
-                    💊
+                    <img
+                                src="/pharmacyAppIcon2.png"
+                                alt="PharmaQuick"
+                                className="navbar-logo"
+                    />
                 </div>
 
                 <div>
@@ -103,6 +107,7 @@ function Login() {
                 </div>
 
             </div>
+            
 
 
             {/* Login Card */}
