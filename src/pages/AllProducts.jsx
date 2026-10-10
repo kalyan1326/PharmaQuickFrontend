@@ -8,7 +8,7 @@ import {
     getProductsByCategory
 } from "../services/productService";
 
-import "../css/AllProducts.css";
+import "../css/AllProductss.css";
 
 function Products() {
 
