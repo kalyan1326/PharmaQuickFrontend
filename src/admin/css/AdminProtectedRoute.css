@@ -1,0 +1,10 @@
+.admin-auth-loading {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f8f7;
+    color: #168c72;
+    font-size: 17px;
+    font-weight: 600;
+}

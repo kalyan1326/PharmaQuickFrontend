@@ -1,5 +1,7 @@
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "../css/Auth.css";
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 function Signup() {
@@ -9,39 +11,81 @@ function Signup() {
     const [formData, setFormData] = useState({
         userId: "",
         name: "",
-        password: "",
-        confirmPassword: "",
         email: "",
-        mobile: ""
+        mobile: "",
+        password: "",
+        confirmPassword: ""
     });
 
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const [loading, setLoading] = useState(false);
 
+
     const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
+
+        const { name, value } = e.target;
+
+        setFormData((previous) => ({
+            ...previous,
+            [name]: value
+        }));
+
     };
 
-    const handleSignup = async (e) => {
+
+    const handleSubmit = async (e) => {
 
         e.preventDefault();
 
         setError("");
         setSuccess("");
 
-        // Check passwords
-        if (formData.password !== formData.confirmPassword) {
-            setError("Passwords do not match");
+
+        // -------------------------------------------------
+        // Frontend validation
+        // -------------------------------------------------
+
+        if (
+            !formData.userId ||
+            !formData.name ||
+            !formData.email ||
+            !formData.mobile ||
+            !formData.password ||
+            !formData.confirmPassword
+        ) {
+
+            setError(
+                "Please fill in all the fields."
+            );
+
             return;
         }
 
-        setLoading(true);
+
+        if (formData.password !== formData.confirmPassword) {
+
+            setError(
+                "Passwords do not match."
+            );
+
+            return;
+        }
+
+
+        if (!/^[6-9][0-9]{9}$/.test(formData.mobile)) {
+
+            setError(
+                "Please enter a valid 10-digit mobile number."
+            );
+
+            return;
+        }
+
 
         try {
+
+            setLoading(true);
 
             const response = await fetch(
                 `${API_URL}/api/signup`,
@@ -54,175 +98,293 @@ function Signup() {
 
                     credentials: "include",
 
-                    body: JSON.stringify({
-                        userId: formData.userId,
-                        name: formData.name,
-                        password: formData.password,
-                        confirmPassword: formData.confirmPassword,
-                        email: formData.email,
-                        mobile: formData.mobile
-                    })
+                    body: JSON.stringify(formData)
                 }
             );
 
-            const data = await response.text();
+            const responseText = await response.text();
 
-            console.log("Signup status:", response.status);
-            console.log("Signup response:", data);
+            let data;
 
-            if (!response.ok) {
-                throw new Error(data || "Signup failed");
+            try {
+                data = JSON.parse(responseText);
+            } catch {
+                data = {
+                    message: responseText
+                };
             }
 
-            setSuccess("User registered successfully!");
+            if (!response.ok) {
 
-            setFormData({
-                userId: "",
-                name: "",
-                password: "",
-                confirmPassword: "",
-                email: "",
-                mobile: ""
-            });
+                throw new Error(
+                    data.message ||
+                    "Registration failed."
+                );
+            }
 
-            // Go to login after 1 second
+            setSuccess(
+                "Account created successfully!"
+            );
+
             setTimeout(() => {
-                navigate("/");
-            }, 1000);
+
+                navigate("/login");
+
+            }, 1200);
 
         } catch (error) {
 
-            console.error("Signup error:", error);
-
-            setError(error.message);
+            setError(
+                error.message ||
+                "Unable to create account."
+            );
 
         } finally {
 
             setLoading(false);
         }
+
     };
 
+
     return (
-        <div className="auth-container">
+
+        <div className="auth-page">
+
+            {/* Brand */}
+
+            <div className="auth-brand">
+
+                <div className="brand-icon">
+                    💊
+                </div>
+
+                <div>
+
+                    <h1>
+                        PharmaQuick
+                    </h1>
+
+                    <p>
+                        Your Health, Delivered.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            {/* Signup Card */}
 
             <div className="auth-card signup-card">
 
-                <h1>Create Account</h1>
+                <div className="auth-header">
 
-                <p className="subtitle">
-                    Register a new account
-                </p>
+                    <h2>
+                        Create Account
+                    </h2>
+
+                    <p>
+                        Join PharmaQuick today
+                    </p>
+
+                </div>
+
+
+                {/* Error */}
 
                 {error && (
-                    <div className="error-message">
+
+                    <div className="auth-error">
                         {error}
                     </div>
+
                 )}
+
+
+                {/* Success */}
 
                 {success && (
-                    <div className="success-message">
+
+                    <div className="auth-success">
                         {success}
                     </div>
+
                 )}
 
-                <form onSubmit={handleSignup}>
+
+                <form onSubmit={handleSubmit}>
+
+                    {/* User ID */}
 
                     <div className="form-group">
-                        <label>User ID</label>
+
+                        <label htmlFor="userId">
+                            User ID
+                        </label>
 
                         <input
+                            id="userId"
                             type="text"
                             name="userId"
-                            placeholder="Enter user ID"
                             value={formData.userId}
                             onChange={handleChange}
-                            required
+                            placeholder="Choose a User ID"
+                            autoComplete="username"
                         />
+
                     </div>
 
+
+                    {/* Name */}
+
                     <div className="form-group">
-                        <label>Name</label>
+
+                        <label htmlFor="name">
+                            Full Name
+                        </label>
 
                         <input
+                            id="name"
                             type="text"
                             name="name"
-                            placeholder="Enter your name"
                             value={formData.name}
                             onChange={handleChange}
-                            required
+                            placeholder="Enter your full name"
+                            autoComplete="name"
                         />
+
                     </div>
 
-                    <div className="form-group">
-                        <label>Password</label>
 
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="Enter password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
+                    {/* Email */}
 
                     <div className="form-group">
-                        <label>Confirm Password</label>
+
+                        <label htmlFor="email">
+                            Email
+                        </label>
 
                         <input
-                            type="password"
-                            name="confirmPassword"
-                            placeholder="Confirm password"
-                            value={formData.confirmPassword}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label>Email</label>
-
-                        <input
+                            id="email"
                             type="email"
                             name="email"
-                            placeholder="Enter email"
                             value={formData.email}
                             onChange={handleChange}
-                            required
+                            placeholder="Enter your email"
+                            autoComplete="email"
                         />
+
                     </div>
+
+
+                    {/* Mobile */}
 
                     <div className="form-group">
-                        <label>Mobile</label>
+
+                        <label htmlFor="mobile">
+                            Mobile Number
+                        </label>
 
                         <input
+                            id="mobile"
                             type="tel"
                             name="mobile"
-                            placeholder="Enter mobile number"
                             value={formData.mobile}
                             onChange={handleChange}
-                            required
+                            placeholder="10-digit mobile number"
+                            maxLength="10"
+                            autoComplete="tel"
                         />
+
                     </div>
+
+
+                    {/* Password */}
+
+                    <div className="form-group">
+
+                        <label htmlFor="password">
+                            Password
+                        </label>
+
+                        <input
+                            id="password"
+                            type="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            placeholder="Create a password"
+                            autoComplete="new-password"
+                        />
+
+                    </div>
+
+
+                    {/* Confirm Password */}
+
+                    <div className="form-group">
+
+                        <label htmlFor="confirmPassword">
+                            Confirm Password
+                        </label>
+
+                        <input
+                            id="confirmPassword"
+                            type="password"
+                            name="confirmPassword"
+                            value={formData.confirmPassword}
+                            onChange={handleChange}
+                            placeholder="Confirm your password"
+                            autoComplete="new-password"
+                        />
+
+                    </div>
+
+
+                    {/* Submit */}
 
                     <button
                         type="submit"
+                        className="auth-button"
                         disabled={loading}
                     >
-                        {loading ? "Creating..." : "Sign Up"}
+
+                        {loading
+                            ? "Creating Account..."
+                            : "Create Account"
+                        }
+
                     </button>
 
                 </form>
 
-                <p className="switch-page">
-                    Already have an account?
 
-                    <Link to="/">
-                        Login
+                {/* Login Link */}
+
+                <div className="auth-footer">
+
+                    <span>
+                        Already have an account?
+                    </span>
+
+                    <Link to="/login">
+                        Sign In
                     </Link>
-                </p>
+
+                </div>
 
             </div>
+
+
+            {/* Copyright */}
+
+            <p className="auth-copyright">
+
+                © {new Date().getFullYear()} PharmaQuick.
+                All rights reserved.
+
+            </p>
 
         </div>
     );

@@ -1,130 +1,221 @@
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "../css/Auth.css";
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 function Login() {
 
     const navigate = useNavigate();
 
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [formData, setFormData] = useState({
+        username: "",
+        password: ""
+    });
 
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const handleLogin = async (e) => {
+    const handleChange = (e) => {
+
+        const { name, value } = e.target;
+
+        setFormData((previous) => ({
+            ...previous,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = async (e) => {
 
         e.preventDefault();
 
         setError("");
-        setLoading(true);
+
+        if (!formData.username || !formData.password) {
+            setError("Please enter your User ID and password.");
+            return;
+        }
 
         try {
+
+            setLoading(true);
 
             const response = await fetch(
                 `${API_URL}/api/login`,
                 {
                     method: "POST",
-
                     headers: {
                         "Content-Type": "application/json"
                     },
-
                     credentials: "include",
-
-                    body: JSON.stringify({
-                        username: username,
-                        password: password
-                    })
+                    body: JSON.stringify(formData)
                 }
             );
 
-            const data = await response.text();
+            const responseText = await response.text();
 
             if (!response.ok) {
-                throw new Error(data || "Login failed");
+
+                throw new Error(
+                    responseText ||
+                    "Invalid User ID or password."
+                );
             }
 
-            console.log("Login successful");
-
-            // JWT cookie is automatically stored by browser
             navigate("/home");
 
         } catch (error) {
 
-            setError(error.message);
+            setError(
+                error.message ||
+                "Unable to login. Please try again."
+            );
 
         } finally {
 
             setLoading(false);
         }
+
+
+
+
     };
 
     return (
-        <div className="auth-container">
+
+        <div className="auth-page">
+
+            {/* Brand */}
+
+            <div className="auth-brand">
+
+                <div className="brand-icon">
+                    💊
+                </div>
+
+                <div>
+                    <h1>PharmaQuick</h1>
+
+                    <p>
+                        Your Health, Delivered.
+                    </p>
+                </div>
+
+            </div>
+
+
+            {/* Login Card */}
 
             <div className="auth-card">
 
-                <h1>Login</h1>
+                <div className="auth-header">
 
-                <p className="subtitle">
-                    Login to your account
-                </p>
+                    <h2>
+                        Welcome Back
+                    </h2>
+
+                    <p>
+                        Sign in to continue to PharmaQuick
+                    </p>
+
+                </div>
+
 
                 {error && (
-                    <div className="error-message">
+
+                    <div className="auth-error">
                         {error}
                     </div>
+
                 )}
 
-                <form onSubmit={handleLogin}>
+
+                <form onSubmit={handleSubmit}>
+
+                    {/* User ID */}
 
                     <div className="form-group">
-                        <label>User ID</label>
+
+                        <label htmlFor="username">
+                            User ID
+                        </label>
 
                         <input
+                            id="username"
                             type="text"
-                            placeholder="Enter your user ID"
-                            value={username}
-                            onChange={(e) =>
-                                setUsername(e.target.value)
-                            }
-                            required
+                            name="username"
+                            value={formData.username}
+                            onChange={handleChange}
+                            placeholder="Enter your User ID"
+                            autoComplete="username"
                         />
+
                     </div>
+
+
+                    {/* Password */}
 
                     <div className="form-group">
-                        <label>Password</label>
+
+                        <label htmlFor="password">
+                            Password
+                        </label>
 
                         <input
+                            id="password"
                             type="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
                             placeholder="Enter your password"
-                            value={password}
-                            onChange={(e) =>
-                                setPassword(e.target.value)
-                            }
-                            required
+                            autoComplete="current-password"
                         />
+
                     </div>
+
+
+                    {/* Login Button */}
 
                     <button
                         type="submit"
+                        className="auth-button"
                         disabled={loading}
                     >
-                        {loading ? "Logging in..." : "Login"}
+
+                        {loading
+                            ? "Signing in..."
+                            : "Sign In"
+                        }
+
                     </button>
 
                 </form>
 
-                <p className="switch-page">
-                    Don't have an account?
+
+                {/* Register Link */}
+
+                <div className="auth-footer">
+
+                    <span>
+                        Don't have an account?
+                    </span>
 
                     <Link to="/signup">
-                        Sign Up
+                        Create Account
                     </Link>
-                </p>
+
+                </div>
 
             </div>
+
+
+            {/* Footer */}
+
+            <p className="auth-copyright">
+                © {new Date().getFullYear()} PharmaQuick.
+                All rights reserved.
+            </p>
 
         </div>
     );

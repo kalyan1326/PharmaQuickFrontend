@@ -1,0 +1,384 @@
+/* =========================================================
+   PharmaQuick Authentication
+   ========================================================= */
+
+.auth-page {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 20px;
+
+    background: #f8fafc;
+
+    font-family:
+        "Inter",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    color: #0f172a;
+}
+
+
+/* =========================================================
+   Brand
+   ========================================================= */
+
+.auth-brand {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 28px;
+}
+
+.brand-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #dcfce7;
+
+    border-radius: 14px;
+
+    font-size: 25px;
+}
+
+.auth-brand h1 {
+    margin: 0;
+
+    color: #16a34a;
+
+    font-size: 28px;
+    font-weight: 700;
+
+    letter-spacing: -0.5px;
+}
+
+.auth-brand p {
+    margin: 3px 0 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   Authentication Card
+   ========================================================= */
+
+.auth-card {
+    width: 100%;
+    max-width: 430px;
+
+    padding: 36px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+
+/* =========================================================
+   Header
+   ========================================================= */
+
+.auth-header {
+    margin-bottom: 28px;
+
+    text-align: center;
+}
+
+.auth-header h2 {
+    margin: 0;
+
+    font-size: 26px;
+    font-weight: 700;
+
+    color: #0f172a;
+}
+
+.auth-header p {
+    margin: 8px 0 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   Error
+   ========================================================= */
+
+.auth-error {
+    margin-bottom: 20px;
+
+    padding: 12px 14px;
+
+    border: 1px solid #fecaca;
+
+    border-radius: 10px;
+
+    background: #fef2f2;
+
+    color: #dc2626;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   Form
+   ========================================================= */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #334155;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 13px 14px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #0f172a;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.form-group input::placeholder {
+    color: #94a3b8;
+}
+
+.form-group input:focus {
+    border-color: #16a34a;
+
+    box-shadow:
+        0 0 0 3px rgba(22, 163, 74, 0.12);
+}
+
+
+/* =========================================================
+   Button
+   ========================================================= */
+
+/* .auth-button {
+    width: 100%;
+
+    margin-top: 4px;
+
+    padding: 13px 16px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #16a34a;
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+} */
+
+.auth-card .auth-button {
+    width: 100%;
+    margin-top: 4px;
+    padding: 13px 16px;
+    border: none;
+    border-radius: 10px;
+    background: #16a34a !important;
+    color: #ffffff !important;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.auth-card .auth-button:hover {
+    background: #15803d !important;
+    transform: translateY(-1px);
+}
+
+.auth-card .auth-button:disabled {
+    background: #86efac !important;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.auth-button:hover {
+    background: #15803d;
+
+    transform: translateY(-1px);
+}
+
+.auth-button:disabled {
+    background: #86efac;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   Footer
+   ========================================================= */
+
+.auth-footer {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 5px;
+
+    margin-top: 24px;
+
+    font-size: 14px;
+
+    color: #64748b;
+}
+
+.auth-footer a {
+    color: #16a34a;
+
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+.auth-footer a:hover {
+    color: #15803d;
+
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   Copyright
+   ========================================================= */
+
+.auth-copyright {
+    margin-top: 24px;
+
+    color: #94a3b8;
+
+    font-size: 12px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    .auth-page {
+        padding: 24px 16px;
+    }
+
+    .auth-card {
+        padding: 28px 22px;
+
+        border-radius: 16px;
+    }
+
+    .auth-brand h1 {
+        font-size: 24px;
+    }
+
+    .auth-header h2 {
+        font-size: 23px;
+    }
+}
+
+/* =========================================================
+   Signup Page
+   ========================================================= */
+
+.signup-card {
+    max-width: 480px;
+}
+
+
+/* =========================================================
+   Success Message
+   ========================================================= */
+
+.auth-success {
+    margin-bottom: 20px;
+
+    padding: 12px 14px;
+
+    border: 1px solid #bbf7d0;
+
+    border-radius: 10px;
+
+    background: #f0fdf4;
+
+    color: #16a34a;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   Signup Responsive
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    .signup-card {
+        max-width: 100%;
+    }
+
+}

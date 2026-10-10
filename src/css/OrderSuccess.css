@@ -1,0 +1,427 @@
+/* =========================================
+   Order Success Page
+========================================= */
+
+.order-success-page {
+    min-height: 100vh;
+    background: #f5f7f6;
+    padding: 40px 20px;
+}
+
+.order-success-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* =========================================
+   Loading
+========================================= */
+
+.order-success-loading {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #555;
+}
+
+/* =========================================
+   Success Header
+========================================= */
+
+.success-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #16a34a;
+    color: white;
+
+    font-size: 45px;
+    font-weight: bold;
+
+    box-shadow: 0 8px 25px rgba(22, 163, 74, 0.25);
+}
+
+.success-header h1 {
+    margin: 0 0 10px;
+
+    color: #166534;
+
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.success-header p {
+    margin: 0;
+
+    color: #666;
+
+    font-size: 16px;
+}
+
+/* =========================================
+   Order Information
+========================================= */
+
+.order-info-card {
+    background: white;
+
+    border-radius: 14px;
+
+    padding: 25px;
+
+    margin-bottom: 20px;
+
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+}
+
+.order-info-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.order-info-row div {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.order-info-row span {
+    color: #777;
+    font-size: 14px;
+}
+
+.order-info-row strong {
+    color: #222;
+    font-size: 17px;
+}
+
+.status-success {
+    color: #16a34a !important;
+}
+
+/* =========================================
+   General Card
+========================================= */
+
+.order-card {
+    background: white;
+
+    border-radius: 14px;
+
+    padding: 25px;
+
+    margin-bottom: 20px;
+
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+}
+
+.order-card h2 {
+    margin: 0 0 20px;
+
+    color: #222;
+
+    font-size: 21px;
+}
+
+/* =========================================
+   Order Items
+========================================= */
+
+.order-items {
+    display: flex;
+    flex-direction: column;
+}
+
+.order-item {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 0;
+
+    border-bottom: 1px solid #eee;
+}
+
+.order-item:first-child {
+    padding-top: 0;
+}
+
+.order-item-details h3 {
+    margin: 0 0 7px;
+
+    color: #222;
+
+    font-size: 16px;
+}
+
+.order-item-details p {
+    margin: 0;
+
+    color: #777;
+
+    font-size: 14px;
+}
+
+.order-item-price {
+    color: #166534;
+
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.no-items {
+    color: #777;
+}
+
+/* =========================================
+   Total
+========================================= */
+
+.order-total {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding-top: 20px;
+
+    font-size: 18px;
+}
+
+.order-total span {
+    color: #555;
+}
+
+.order-total strong {
+    color: #166534;
+
+    font-size: 22px;
+}
+
+/* =========================================
+   Shipping Address
+========================================= */
+
+.shipping-address {
+    padding: 18px;
+
+    background: #f8faf9;
+
+    border-radius: 10px;
+
+    border-left: 4px solid #16a34a;
+}
+
+.shipping-address strong {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #222;
+
+    font-size: 17px;
+}
+
+.shipping-address p {
+    margin: 5px 0;
+
+    color: #555;
+
+    font-size: 14px;
+}
+
+/* =========================================
+   Buttons
+========================================= */
+
+.order-actions {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 30px;
+}
+
+.order-actions button {
+    border: none;
+
+    border-radius: 8px;
+
+    padding: 13px 25px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.continue-shopping-btn {
+    background: #16a34a;
+    color: white;
+}
+
+.continue-shopping-btn:hover {
+    background: #15803d;
+    transform: translateY(-1px);
+}
+
+.home-btn {
+    background: white;
+
+    color: #166534;
+
+    border: 1px solid #16a34a !important;
+}
+
+.home-btn:hover {
+    background: #f0fdf4;
+}
+
+/* =========================================
+   Error
+========================================= */
+
+.order-success-error {
+    max-width: 500px;
+
+    margin: 100px auto;
+
+    padding: 40px;
+
+    text-align: center;
+
+    background: white;
+
+    border-radius: 14px;
+
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.error-icon {
+    font-size: 45px;
+
+    margin-bottom: 15px;
+}
+
+.order-success-error h2 {
+    margin-bottom: 10px;
+
+    color: #333;
+}
+
+.order-success-error p {
+    color: #666;
+
+    margin-bottom: 25px;
+}
+
+.order-success-error button {
+    border: none;
+
+    background: #16a34a;
+
+    color: white;
+
+    padding: 12px 25px;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.order-success-error button:hover {
+    background: #15803d;
+}
+
+/* =========================================
+   Responsive
+========================================= */
+
+@media (max-width: 768px) {
+
+    .order-success-page {
+        padding: 25px 15px;
+    }
+
+    .success-header h1 {
+        font-size: 26px;
+    }
+
+    .order-info-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .order-card,
+    .order-info-card {
+        padding: 20px;
+    }
+
+    .order-actions {
+        flex-direction: column;
+    }
+
+    .order-actions button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .success-icon {
+        width: 65px;
+        height: 65px;
+
+        font-size: 35px;
+    }
+
+    .success-header h1 {
+        font-size: 23px;
+    }
+
+    .success-header p {
+        font-size: 14px;
+    }
+
+    .order-item {
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .order-item-price {
+        white-space: nowrap;
+    }
+
+    .order-total {
+        font-size: 16px;
+    }
+
+    .order-total strong {
+        font-size: 19px;
+    }
+}
