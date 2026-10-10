@@ -17,7 +17,7 @@ import AdminProducts from "./admin/pages/AdminProducts";
 import AdminAddProduct from "./admin/pages/AdminAddProduct";
 import AdminEditProduct from "./admin/pages/AdminEditProduct";
 import AdminOrders from "./admin/pages/AdminOrders";
-import AdminUsers from "./admin/pages/AdminUsers"; 
+import AdminUsers from "./admin/pages/AdminUsers";
 
 function App() {
     return (
